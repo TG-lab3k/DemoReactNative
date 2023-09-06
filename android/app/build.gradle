@@ -1,5 +1,6 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
+apply plugin: 'org.jetbrains.kotlin.android'
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -118,6 +119,13 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    def coroutinesVersion = '1.7.3'
+    def kotlinVersion = '1.8.20'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

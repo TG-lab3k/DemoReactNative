@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import type { PropsWithChildren } from 'react';
+import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -18,20 +18,15 @@ import {
   Button,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import { useNavigation } from '@react-navigation/native';
-
+import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+import {useNavigation} from '@react-navigation/native';
+import {MagicTextView} from './widget/MagicTextView';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({ children, title }: SectionProps): JSX.Element {
+function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -83,9 +78,17 @@ function HomePage(): JSX.Element {
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
           </Section>
-          <Button title='Epos Printer' onPress={() => navigation.navigate('eposn')} />
-          
-          <Button title='Star Printer' onPress={() => navigation.navigate('star')} />
+          <Button
+            title="Epos Printer"
+            onPress={() => navigation.navigate('eposn')}
+          />
+
+          <Button
+            title="Star Printer"
+            onPress={() => navigation.navigate('star')}
+          />
+
+          <MagicTextView/>
         </View>
       </ScrollView>
     </SafeAreaView>
