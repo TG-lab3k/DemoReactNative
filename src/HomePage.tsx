@@ -21,6 +21,8 @@ import {
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {useNavigation} from '@react-navigation/native';
 import {MagicTextView} from './widget/MagicTextView';
+import {startTimeout, startTimer} from './Timers';
+import Networks from './Networks';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -60,6 +62,11 @@ function HomePage(): JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const getNetworkState = async () => {
+    const networkState = await Networks.getNetworkState();
+    console.log('#getNetworkState# ip4: ', networkState.ip4);
+  };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -88,7 +95,13 @@ function HomePage(): JSX.Element {
             onPress={() => navigation.navigate('star')}
           />
 
-          <MagicTextView/>
+          <Button title="Star Timer" onPress={() => startTimer()} />
+
+          <Button title="Star Timeout" onPress={() => startTimeout()} />
+
+          <Button title="Get Network State" onPress={() => getNetworkState()} />
+
+          <MagicTextView />
         </View>
       </ScrollView>
     </SafeAreaView>

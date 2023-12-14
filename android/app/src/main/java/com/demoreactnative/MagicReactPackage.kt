@@ -8,7 +8,7 @@ import com.facebook.react.uimanager.SimpleViewManager
 
 class MagicReactPackage : ReactPackage {
     override fun createNativeModules(reactContext: ReactApplicationContext): MutableList<NativeModule> {
-        return mutableListOf()
+        return mutableListOf(HPOSNetworkModule(reactContext))
     }
 
     override fun createViewManagers(reactContext: ReactApplicationContext): MutableList<SimpleViewManager<*>> {

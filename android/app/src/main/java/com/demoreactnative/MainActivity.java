@@ -1,5 +1,7 @@
 package com.demoreactnative;
 
+import android.widget.Toast;
+
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
@@ -23,11 +25,17 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected ReactActivityDelegate createReactActivityDelegate() {
-        return new DefaultReactActivityDelegate(
-                this,
-                getMainComponentName(),
+        return new DefaultReactActivityDelegate(this, getMainComponentName(),
                 // If you opted-in for the New Architecture, we enable the Fabric Renderer.
-                DefaultNewArchitectureEntryPoint.getFabricEnabled(),
-                DefaultNewArchitectureEntryPoint.getConcurrentReactEnabled());
+                DefaultNewArchitectureEntryPoint.getFabricEnabled(), DefaultNewArchitectureEntryPoint.getConcurrentReactEnabled());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().getDecorView().postDelayed(() -> {
+            String ip = Networks.INSTANCE.getDeviceIP4(getApplicationContext());
+            Toast.makeText(getApplicationContext(), String.format("IP4: %s", ip), Toast.LENGTH_LONG).show();
+        }, 1000);
     }
 }
